@@ -26,7 +26,7 @@ def choice_of_int():
         choice_of_int()
     
 def choice_of_subinterval_single(a,b):
-    choice_of_subinterval = int(input('Enter 1 if you have sub-interval 2 if you have difference'))
+    choice_of_subinterval = int(input('Enter 1 if you have sub-interval 2 if you have difference: '))
     if choice_of_subinterval == 1:
         n = int(input('Enter the subinterval: '))
     elif choice_of_subinterval == 2:
@@ -49,8 +49,6 @@ def choice_of_subinterval_double(a,b,c,d):
         k = float(input('Enter the difference for y: '))
         nx = int((a-b)/h)
         ny = int((c-d)/k)
-        print(nx)
-        print(ny)
     else:
         print('You entered a wrong response!!')
         choice_of_subinterval_double(a,b,c,d)
