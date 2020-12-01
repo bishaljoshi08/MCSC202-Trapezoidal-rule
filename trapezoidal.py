@@ -5,9 +5,7 @@ from tabulate import tabulate
 def single_integration(a,b,n,roun):
     h = ( a - b ) / n
     value = h*(f1(a) + f1(b))/2
-    print(value)
     for i in range(1,n):
-        print(i)
         value += h*f1(b + i * h)    
     value = round(value,roun)
     print ('The integration is %f' %value)
@@ -43,7 +41,7 @@ def choice_of_subinterval_single(a,b):
 
 
 def choice_of_subinterval_double(a,b,c,d):
-    choice_of_subinterval = int(input('Enter 1 if you have sub-interval 2 if you have difference'))
+    choice_of_subinterval = int(input('Enter 1 if you have sub-interval 2 if you have difference: '))
     if choice_of_subinterval == 1:
         nx = int(input('Enter the subinterval for x: '))
         ny = int(input('Enter the subinterval for y: '))
