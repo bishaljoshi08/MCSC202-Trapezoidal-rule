@@ -1,8 +1,10 @@
-from math import exp ,sin
 from tabulate import tabulate
+from Equation import Expression
 
 
 def single_integration(a,b,n,roun):
+    exp = input('Enter the expression: ')
+    f1 = Expression(exp, ["x"])
     h = ( a - b ) / n
     value = h*(f1(a) + f1(b))/2
     for i in range(1,n):
@@ -58,34 +60,26 @@ def choice_of_subinterval_double(a,b,c,d):
 
 
 
-def f1(x):
-    return 2**x
 
 
-def f(x,y):
-    return exp(x+y)
+
+
 
 def double_integration(a,b,c,d,nx,ny,roun):
+    exp = input('Enter the expression: ')
+    f = Expression(exp, ["x","y"])
     h = (a-b)/nx
     k = (c-d)/ny
     multable = [[2 for i in range(nx+2)] for j in range(ny+2)]
     multable[0][0] = 'X'
     multable[1][0] = multable[0][1] = multable[0][nx+1] = multable[ny+1][0] = 1 
 
-    # multable = [['X',1,4,2,4,1],
-    # [1,0,0,0,0,0],
-    # [4,0,0,0,0,0],
-    # [2,0,0,0,0,0],
-    # [4,0,0,0,0,0],
-    # [1,0,0,0,0,0],
-    # ]
 
     for i in range(1,ny+2):
         for j in range (1,nx+2):
             multable[i][j] = multable[i][0] * multable[0][j]
     print('The multiplication table is:')
-    # for row in multable:
-    #     x.rows.append(row)
+
     print(tabulate(multable))
     print('*'*100)
 
@@ -101,8 +95,6 @@ def double_integration(a,b,c,d,nx,ny,roun):
             fuction_table[i][j] = round(f(fuction_table[0][j] ,fuction_table[i][0]),roun)
     
     print('The functional table is:')
-    # for row in fuction_table:
-    #     y.rows.append(row)
     print(tabulate(fuction_table))
     print('*'*100)
 
@@ -112,14 +104,9 @@ def double_integration(a,b,c,d,nx,ny,roun):
             value += (fuction_table[i][j] * multable[i][j])
 
     value = round((h*k*0.25*value),roun)
-    # value = round((h*(k/9)*value),roun)
+
 
     print (f'The integration value is {value:f}' )
-
-# x = BeautifulTable()
-# x.set_style(BeautifulTable.STYLE_BOX_ROUNDED)
-# y = BeautifulTable()
-# y.set_style(BeautifulTable.STYLE_BOX_ROUNDED)
 
 
 choice_of_int()
