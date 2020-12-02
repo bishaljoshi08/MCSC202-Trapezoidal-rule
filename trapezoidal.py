@@ -3,7 +3,7 @@ from Equation import Expression
 
 
 def single_integration(a,b,n,roun):
-    exp = input('Enter the expression: ')
+    exp = input('Enter the expression in term of x: ')
     f1 = Expression(exp, ["x"])
     h = ( a - b ) / n
     value = h*(f1(a) + f1(b))/2
@@ -17,32 +17,33 @@ def choice_of_int():
     if choice_of_integration == 1 :
         a = float(input('Enter the upper limit of integration: '))
         b = float(input('Enter the lower limit of integration: '))
-        choice_of_subinterval_single(a,b)
+        roun = int(input('Round up to how many digits: '))
+        choice_of_subinterval_single(a,b,roun)
     elif choice_of_integration == 2:
         a = float(input('Enter the upper limit of integration for x: '))
         b = float(input('Enter the lower limit of integration for x: '))
         c = float(input('Enter the upper limit of integration for y: '))
         d = float(input('Enter the lower limit of integration for y: '))
-        choice_of_subinterval_double(a,b,c,d)
+        roun = int(input('Round up to how many digits: '))
+        choice_of_subinterval_double(a,b,c,d,roun)
     else:
         print('You entered a wrong response!!')
         choice_of_int()
     
-def choice_of_subinterval_single(a,b):
+def choice_of_subinterval_single(a,b,roun):
     choice_of_subinterval = int(input('Enter 1 if you have sub-interval 2 if you have difference: '))
     if choice_of_subinterval == 1:
         n = int(input('Enter the subinterval: '))
     elif choice_of_subinterval == 2:
         h = float(input('Enter the difference: '))
-        n = int((a-b)/h) 
+        n = int(round((a-b)/h,roun)) 
     else:
         print('You entered a wrong response!!')
-        choice_of_subinterval_single(a,b)
-    roun = int(input('Round up to how many digits: '))
+        choice_of_subinterval_single(a,b,roun)
     single_integration(a,b,n,roun)
 
 
-def choice_of_subinterval_double(a,b,c,d):
+def choice_of_subinterval_double(a,b,c,d,roun):
     choice_of_subinterval = int(input('Enter 1 if you have sub-interval 2 if you have difference: '))
     if choice_of_subinterval == 1:
         nx = int(input('Enter the subinterval for x: '))
@@ -50,23 +51,17 @@ def choice_of_subinterval_double(a,b,c,d):
     elif choice_of_subinterval == 2:
         h = float(input('Enter the difference for x: '))
         k = float(input('Enter the difference for y: '))
-        nx = int((a-b)/h)
-        ny = int((c-d)/k)
+        nx = int(round((a-b)/h,roun))
+        ny = int(round((c-d)/k,roun))
     else:
         print('You entered a wrong response!!')
-        choice_of_subinterval_double(a,b,c,d)
-    roun = int(input('Round up to how many digits: '))
+        choice_of_subinterval_double(a,b,c,d,roun)
+    
     double_integration(a,b,c,d,nx,ny,roun)
-
-
-
-
-
-
-
+    
 
 def double_integration(a,b,c,d,nx,ny,roun):
-    exp = input('Enter the expression: ')
+    exp = input('Enter the expression in terms of x and y: ')
     f = Expression(exp, ["x","y"])
     h = (a-b)/nx
     k = (c-d)/ny
